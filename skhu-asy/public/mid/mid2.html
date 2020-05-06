@@ -15,8 +15,9 @@
     <input type="text" v-model="number" v-bind:key="index" /> <br />
     <table>
         <tr v-for="i in size">
-            {{ i }}
-          </td>
+            <td>
+            {{number}} * {{ i }} = {{number*i}}
+        </td>
         </tr>
     </table>
   </div>
