@@ -15,7 +15,7 @@
 <body>
   <div id="app">
     <label>
-      <input type="radio" value="true" v-model="visible" />
+      <input type="radio" value="true" v-model="visible" v:bind/>
       남자
     </label>
     <label>
@@ -30,6 +30,11 @@
       el: '#app',
       data: {
         visible: ''
+      },
+      methods: {
+        getColor() {
+          return this.value ? "#ffa" : "#bfb";
+        }
       }
     })    
    </script>
