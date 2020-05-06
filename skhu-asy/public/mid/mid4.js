@@ -7,9 +7,9 @@ console.log(a);
 let a2 = a.filter((e) => e%2 === 0);
 console.log(a2);
 
-function callback(i, a) {
+// function callback(i, a) {
 
-}
-console.log(a2.reduce(callback));
+// }
+console.log(a2.length);
 
 //미해결
