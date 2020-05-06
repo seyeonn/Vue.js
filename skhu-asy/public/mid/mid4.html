@@ -10,10 +10,13 @@
     div#hello { margin: 30px; padding: 50px; 
       background-color: #00ff9d; border: 1px solid gray; 
       text-align: center; font-size: 20pt; }
+    .purple { background-color: #E8D9FF; }
+    .pink { background-color: #FFD9EC; }
+
   </style>
 </head>
 <body>
-  <div id="app">
+  <div id="app" v-bind:class="getCssClass()">
     <label>
       <input type="radio" value="true" v-model="visible" v:bind/>
       남자
@@ -22,8 +25,8 @@
       <input type="radio" value="false" v-model="visible" />
       여자
     </label>
-    <div id="sex" v-show="visible == 'true'">남자</div>
-    <div id="sex" v-show="visible == 'false'">여자</div>
+    <h1 id="app" v-show="visible == 'true'" >남자</h1>
+    <h1 id="app" v-show="visible == 'false'">여자</h1>
   </div>
   <script type="text/javascript">
     var app = new Vue({
@@ -32,8 +35,11 @@
         visible: ''
       },
       methods: {
-        getColor() {
-          return this.value ? "#ffa" : "#bfb";
+        getCssClass() {
+            if(this.visible == false)
+              return "";
+            else
+              return this.visible == 'true' ? "purple" : "pink";
         }
       }
     })    
