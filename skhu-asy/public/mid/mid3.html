@@ -22,22 +22,19 @@
     var app = new Vue({
       el: '#app',
       data: {
-        time: ''
+        time: new Date()
       },
       mounted: function() {
-          let id = setInterval(function () {
-             
-          })
-        // let callback = () => this.time = formatTime(new Date);
-        // callback();
-        // setInterval(callback, 1000);
+        let callback = () => this.time = formatTime(new Date());
+        callback();
+        setInterval(callback, 1000);
       }
     })
 
-    // function formatTime(date) {
-    //   let s = date.getSeconds();
-    //   return s;
-    // }
+    function formatTime(date) {
+      let s = date.getSeconds();
+      return s;
+    }
    </script>
 </body>    
 </html>
