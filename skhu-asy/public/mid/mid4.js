@@ -8,6 +8,6 @@ let a2 = a.filter((e) => e%2 === 0);
 console.log(a2);
 
 function callback(a, b) {
-    return a+b;
+    return ;
 }
 console.log(a2.reduce(callback));

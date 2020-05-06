@@ -5,10 +5,10 @@ for(let i =0; i<5; i++) {
 }
 console.log(a);
 
-for(let i = 0; i<a.length; i++) {
-    let temp = i;
+for(let i = 0; i<5; i++) {
     if(a[i]%10 >= 5) {
         a.splice(i,1);
+        i--;
     }
 }
 
