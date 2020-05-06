@@ -6,6 +6,7 @@ for(let i =0; i<5; i++) {
 console.log(a);
 
 for(let i = 0; i<a.length; i++) {
+    let temp = i;
     if(a[i]%10 >= 5) {
         a.splice(i,1);
     }
