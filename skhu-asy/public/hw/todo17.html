@@ -1,0 +1,71 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../ex05/todo1.css">
+  <style> ul { list-style-type: none; } </style>
+</head>
+<body>
+  <div id="app">
+    <h1>할 일</h1>
+    <ul>
+      <li v-for="(todo, key) in todoList" v-bind:key="key">
+        <input type="checkbox" v-model="checked[key]" />
+        {{ todo.title }}
+      </li>
+    </ul>
+    <input type="text" v-model.trim="todo.title" />
+    <button type="button" v-on:click="addTodo" v-bind:disabled="!todo.title">할일 추가</button>
+    <button type="button" v-on:click="deleteTodo" v-show="checkedCount > 0">삭제</button>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        todoList: {},
+        checked: [],
+        todo: {},
+        selectedKey: ""
+      },
+      computed: {
+        checkedCount: function() {
+          let count = 0;
+          for (let i in this.todoList)
+            if (this.checked[i]) ++count;
+          return count;
+        }
+      },
+      methods: {
+        reload: function() {
+          axios.get('https://skhu-asy.firebaseio.com/todo1.json')
+               .then(response => this.todoList = response.data);
+        },
+        addTodo: function() {
+          axios.post('https://skhu-asy.firebaseio.com/todo1.json', this.todo)
+               .then(response => this.reload());
+          this.todo = {};
+        },
+        deleteTodo: function() {
+          for (let i in this.todoList) {
+            if (this.checked[i] != null) {
+              this.checked[i] = null;
+              this.selectedKey = i;
+              axios.delete('https://skhu-asy.firebaseio.com/todo1/' + this.selectedKey + '.json')
+                 .then(response => this.reload());
+            }
+          }
+          if (confirm("삭제하시겠습니까?") == false) return;  
+        }
+      }
+    })
+
+    window.onload = function() {
+      app.reload();
+    }
+   </script>
+</body>
+</html>
+
+
