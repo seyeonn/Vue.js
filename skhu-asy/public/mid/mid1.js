@@ -5,11 +5,10 @@ for(let i =0; i<100; i++) {
 }
 console.log(a);
 
-for(let i = 0; i<100; i++) {
-    if(a[i]%10 >= 5) {
-        a.splice(i,1);
-        i--;
-    }
+for (let i = a.length - 1; i >= 0; --i) {
+    let d = a[i] % 10;
+    if (d >= 5 && d <= 9)
+      a.splice(i, 1);  
 }
 
 console.log(a);
